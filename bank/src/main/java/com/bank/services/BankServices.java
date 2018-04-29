@@ -5,24 +5,43 @@
  */
 package com.bank.services;
 
-import com.bank.models.Book;
+import com.bank.models.Customer;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class BookService {
-    public static List<Book> list = new ArrayList<>();
+public class BankServices {
+    
+    public static List<Customer> list = new ArrayList<>();
    
     
-    public BookService () {
+    public BankServices () {
        
     }
+    
+    public List<Customer> createCustomer(Customer c){
         
-    public List<Book> getAllBooks() {
+        list.add(c);    
+        
+        System.out.println("size of list " + list.size());
+        //System.out.println("Added customer with id of " + c.getId());
+        return list;
+    }
+    
+    public List<Customer> getAllCustomers(){
+        return list;
+    }
+    
+    public Customer getCustomer(int id){
+        return list.get(id -1);
+    }
+
+    /*
+    public List<Customer> getAllBooks() {
         return list;
     }
 
-    public Book createBook(Book book){
+    public Customer createBook(Customer book){
         book.setId(list.size() + 1);
         list.add(book);
         System.err.println("size of list is " + list.size());
@@ -30,11 +49,11 @@ public class BookService {
         return book;
     }
         
-    public Book readBook(int id) {
+    public Customer readBook(int id) {
         return list.get(id-1);
     }
      
-    public Book updateBook(Book book){
+    public Customer updateBook(Customer book){
         if (book.getId() <= 0) {
             return null;
         }
@@ -43,13 +62,14 @@ public class BookService {
         return book;
     }
     
-    public Book deleteBook(int id){
+    public Customer deleteBook(int id){
         if (id <= 0) {
             return null;
         }
-        Book b = list.get(id-1);
+        Customer b = list.get(id-1);
         list.remove(id-1);
         System.out.println("204 -  book id:" + String.valueOf(id) + " deleted");
         return b;
     }
+    */
 }
