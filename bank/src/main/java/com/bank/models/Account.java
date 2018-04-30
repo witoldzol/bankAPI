@@ -17,7 +17,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Account {
  
-    private long sortCode, number, currentBalance;
+    private String type;
+    private int sortCode, number, currentBalance;
     private ArrayList<Transaction> transactions;
     
     
@@ -25,18 +26,27 @@ public class Account {
         
     }
 
-    public Account(long sortCode, long number, long currentBalance) {
+    public Account( String type, int sortCode, int number, int currentBalance) {
         transactions = new ArrayList();
         this.sortCode = sortCode;
         this.number = number;
         this.currentBalance = currentBalance;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    
     public long getSortCode() {
         return sortCode;
     }
 
-    public void setSortCode(long sortCode) {
+    public void setSortCode(int sortCode) {
         this.sortCode = sortCode;
     }
 
@@ -44,7 +54,7 @@ public class Account {
         return number;
     }
 
-    public void setNumber(long number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 
@@ -52,7 +62,7 @@ public class Account {
         return currentBalance;
     }
 
-    public void setCurrentBalance(long currentBalance) {
+    public void setCurrentBalance(int currentBalance) {
         this.currentBalance = currentBalance;
     }
     

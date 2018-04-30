@@ -5,18 +5,19 @@
  */
 package com.bank.services;
 
+import com.bank.models.Account;
 import com.bank.models.Customer;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class CustomerServices {
+public class BankServices {
     
     // initialize list to hold our customers
     public static List<Customer> list = new ArrayList<>();
    
     //constructor - no parameter
-    public CustomerServices () {
+    public BankServices () {
        
     }
     
@@ -68,18 +69,27 @@ public class CustomerServices {
         //return removed object
         return c;
     }
-    /*
     
-
-
-    public Customer deleteBook(int id){
-        if (id <= 0) {
-            return null;
-        }
-        Customer b = list.get(id-1);
-        list.remove(id-1);
-        System.out.println("204 -  book id:" + String.valueOf(id) + " deleted");
-        return b;
+    //----------------------------
+    // ACCOUNTS
+    //----------------------------
+    
+    
+    //list all accounts for single customer
+    public List<Account> getAllAccounts(int id){
+        //get customer
+        Customer c = list.get(id -1);
+        //get list of all accounts 
+        return c.getAccounts();
     }
-    */
+    
+    //create account for given customer
+    public Account createAccount(int id, Account a){
+        //get customer
+        Customer c = list.get(id - 1);
+        //create account ( method returns String response with a/c type and number)
+        return c.createAccount(a);
+    }
+    
+    
 }

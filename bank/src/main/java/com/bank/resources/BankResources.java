@@ -5,8 +5,9 @@
  */
 package com.bank.resources;
 
+import com.bank.models.Account;
 import com.bank.models.Customer;
-import com.bank.services.CustomerServices;
+import com.bank.services.BankServices;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -24,32 +25,52 @@ import javax.ws.rs.PathParam;
 @Produces(MediaType.APPLICATION_JSON)
 public class BankResources {
     
-    CustomerServices cs = new CustomerServices();
+    //instantiate customer services
+    BankServices cs = new BankServices();
     
-    
+    //get single customer
+    @GET
+    @Path("/{id}")
+    public Customer getCustomer(@PathParam("id") int id){
+        return cs.getCustomer(id);
+    }
+    //get all customers
     @GET
     public List<Customer> getAllCustomers(){
         return cs.getAllCustomers();
     }
-    
-    
+    //create customer
     @POST
     public Customer createCustomer(Customer c) {       
         cs.createCustomer(c);
         return c;
     }
-    
+    //update customer
     @PUT
     public Customer updateCustomer(Customer c){
         cs.updateCustomer(c);
         return c;
     }
-    
+    //delete customer
     @DELETE
     @Path("/{id}")
-    public Customer removeCustomer(@PathParam("id") int id){
-        
-        return cs.removeCustomer(id);
-        
+    public Customer removeCustomer(@PathParam("id") int id){        
+        return cs.removeCustomer(id);        
     }
+    //---------------------   ACCOUNTS
+    
+    //list all accounts for given customer
+    @GET
+    @Path("/{id}/accounts")
+    public List<Account> getAllAccounts(@PathParam("id") int id){
+        return cs.getAllAccounts(id);
+    }
+    
+    //create account
+    @POST
+    @Path("/{id}/accounts")
+    public Account createAccount(@PathParam("id") int id, Account a){
+        return createAccount(id, a);
+    }
+
 }
