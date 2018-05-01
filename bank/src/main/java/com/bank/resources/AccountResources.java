@@ -25,13 +25,20 @@ public class AccountResources {
     
     //instantiate customer services
     AccountServices as = new AccountServices();
+   
     /*
-    //list all accounts for given customer
-    @GET
-    public ArrayList<Account> getAllAccounts(@PathParam("id") int id){
-        return as.getAllAccounts(id);
+    //create account
+    @POST
+    public Account createAccount(@PathParam("id") int id, Account a) {
+        System.out.println("id  " + id);
+        return as.createAccount(id, a);
     }
     */
+    
+    @POST
+    public Account getAccount(Account a){
+        return a;
+    }
     
     @GET
     public ArrayList<Account> getAccounts(@PathParam("id") int id) throws NullPointerException{
@@ -47,10 +54,5 @@ public class AccountResources {
         return al;
     }
     
-    //create account
-    @POST
-    public Account createAccount(@PathParam("id") int id, Account a){
-        return createAccount(id, a);
-    }
     
 }

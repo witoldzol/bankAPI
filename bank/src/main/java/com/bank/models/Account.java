@@ -27,10 +27,11 @@ public class Account {
     }
 
     public Account( String type, int sortCode, int number, int currentBalance) {
-        transactions = new ArrayList();
+        this.type = type;
         this.sortCode = sortCode;
         this.number = number;
         this.currentBalance = currentBalance;
+        transactions = new ArrayList();
     }
 
     public String getType() {

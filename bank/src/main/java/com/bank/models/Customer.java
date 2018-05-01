@@ -13,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Customer {
     private int id;
     private String name, address, loginName, password;
-    private ArrayList<Account> accounts;
+    private ArrayList<Account> accounts = new ArrayList();
     
     public Customer(){}
 
@@ -27,7 +27,7 @@ public class Customer {
         this.address = address;
         this.loginName = loginName;
         this.password = password;
-        accounts = new ArrayList();
+        accounts.add(new Account("dd",0,0,0));
     }
     
     public ArrayList<Account> getAccounts(){
@@ -36,7 +36,7 @@ public class Customer {
     
     public Account createAccount(Account a){
         accounts.add(a);
-        return a;
+        return accounts.get(accounts.size());
     }
     
     public int getId() {
