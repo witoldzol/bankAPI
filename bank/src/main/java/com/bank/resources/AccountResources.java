@@ -8,7 +8,7 @@ package com.bank.resources;
 import com.bank.models.Account;
 import com.bank.services.AccountServices;
 import com.bank.services.CustomerServices;
-import java.util.List;
+import java.util.ArrayList;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -17,23 +17,34 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/{id}/accounts")
+// this is a sub resource, 
+// path param is already defined in parent file
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class AccountResources {
     
     //instantiate customer services
     AccountServices as = new AccountServices();
-    
-    @GET
-    public String test(){
-        return "test";
-    }
-    
+    /*
     //list all accounts for given customer
     @GET
-    public List<Account> getAllAccounts(@PathParam("id") int id){
+    public ArrayList<Account> getAllAccounts(@PathParam("id") int id){
         return as.getAllAccounts(id);
+    }
+    */
+    
+    @GET
+    public ArrayList<Account> getAccounts(@PathParam("id") int id) throws NullPointerException{
+        ArrayList<Account> al = null;
+        
+        try {
+            al = as.getAllAccounts(id);
+        } catch (Exception e) {
+            System.err.println("error: " + e);
+            System.out.println("There are no accounts!");
+        } 
+        
+        return al;
     }
     
     //create account

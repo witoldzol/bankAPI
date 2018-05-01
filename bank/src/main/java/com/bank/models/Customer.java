@@ -6,7 +6,6 @@
 package com.bank.models;
 
 import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
@@ -14,7 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Customer {
     private int id;
     private String name, address, loginName, password;
-    private List<Account> accounts;
+    private ArrayList<Account> accounts;
     
     public Customer(){}
 
@@ -31,7 +30,7 @@ public class Customer {
         accounts = new ArrayList();
     }
     
-    public List<Account> getAccounts(){
+    public ArrayList<Account> getAccounts(){
         return accounts;
     }
     

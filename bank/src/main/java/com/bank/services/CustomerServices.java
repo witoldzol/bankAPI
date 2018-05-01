@@ -5,55 +5,58 @@
  */
 package com.bank.services;
 
+import com.bank.database.Database;
 import com.bank.models.Account;
 import com.bank.models.Customer;
 import java.util.ArrayList;
-import java.util.List;
+
 
 
 public class CustomerServices {
     
     // initialize list to hold our customers
-    public static List<Customer> list = new ArrayList<>();
+    private ArrayList<Customer> customers = Database.getCustomers();
    
     //constructor - no parameter
     public CustomerServices () {
        
     }
     
-    public List<Customer> createCustomer(Customer c){
+    public Customer createCustomer(Customer c){
         
         //adjust id number as per list size
-        c.setId(list.size() + 1);
+        c.setId(customers.size() + 1);
         
         //add customer to the list
-        list.add(c);    
+        customers.add(c);    
         
-        //debuging print out 
-        System.err.println("Customer " + c.toString() + "has been added" );
+        System.out.println("size of database " + customers.size());
         
-        return list;
+        return customers.get(customers.size() - 1);
     }
     
-    public List<Customer> getAllCustomers(){
-        return list;
+    public ArrayList<Customer> getAllCustomers(){
+        return customers;
     }
     
     public Customer getCustomer(int id){
-        return list.get(id -1);
+        return customers.get(id -1);
     }
 
-    public Customer updateCustomer(Customer c){
+    public Customer updateCustomer(int id, Customer c){
         
-        if (c.getId() == 0) {
+        if (id <= 0) {
             return null;
         }
+        
         //update customer data
-        list.set(c.getId()-1, c);
+        customers.set(id - 1, c);
+        
         //debugging print out
-        System.out.println("Customer id " + c.getId() + " has been updated");
+        System.out.println("Customer id " + id + " has been updated");
+        
         //return customer object
-        return c;
+        return customers.get(id - 1 );
     }
     
     public Customer removeCustomer(int id){
@@ -61,9 +64,9 @@ public class CustomerServices {
             return null;
         }
         //get customer
-        Customer c = list.get(id-1);
+        Customer c = customers.get(id-1);
         //remove it from list
-        list.remove(id-1);
+        customers.remove(id-1);
         //print out
         System.out.println("Customer Id " + id + " has been removed");
         //return removed object

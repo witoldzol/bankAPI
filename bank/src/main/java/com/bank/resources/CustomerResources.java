@@ -5,11 +5,9 @@
  */
 package com.bank.resources;
 
-import com.bank.models.Account;
 import com.bank.models.Customer;
 import com.bank.services.CustomerServices;
 import java.util.ArrayList;
-import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -36,7 +34,7 @@ public class CustomerResources {
     }
     //get all customers
     @GET
-    public List<Customer> getAllCustomers(){
+    public ArrayList<Customer> getAllCustomers(){
         return cs.getAllCustomers();
     }
     //create customer
@@ -47,9 +45,9 @@ public class CustomerResources {
     }
     //update customer
     @PUT
-    public Customer updateCustomer(Customer c){
-        cs.updateCustomer(c);
-        return c;
+    @Path("/{id}")
+    public Customer updateCustomer(@PathParam("id") int id, Customer c){
+        return cs.updateCustomer(id, c);
     }
     //delete customer
     @DELETE
@@ -59,8 +57,8 @@ public class CustomerResources {
     }
     //---------------------   Path to ACCOUNTS sub rescource
     @Path("/{id}/accounts")
-    public CustomerResources getResources(){
-        return new CustomerResources();
+    public AccountResources getResources(){
+        return new AccountResources();
     }
     
 
