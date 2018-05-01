@@ -7,7 +7,7 @@ package com.bank.resources;
 
 import com.bank.models.Account;
 import com.bank.models.Customer;
-import com.bank.services.BankServices;
+import com.bank.services.CustomerServices;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
@@ -23,10 +23,10 @@ import javax.ws.rs.PathParam;
 @Path("/customers")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
-public class BankResources {
+public class CustomerResources {
     
     //instantiate customer services
-    BankServices cs = new BankServices();
+    CustomerServices cs = new CustomerServices();
     
     //get single customer
     @GET
@@ -57,20 +57,11 @@ public class BankResources {
     public Customer removeCustomer(@PathParam("id") int id){        
         return cs.removeCustomer(id);        
     }
-    //---------------------   ACCOUNTS
-    
-    //list all accounts for given customer
-    @GET
+    //---------------------   Path to ACCOUNTS sub rescource
     @Path("/{id}/accounts")
-    public List<Account> getAllAccounts(@PathParam("id") int id){
-        return cs.getAllAccounts(id);
+    public CustomerResources getResources(){
+        return new CustomerResources();
     }
     
-    //create account
-    @POST
-    @Path("/{id}/accounts")
-    public Account createAccount(@PathParam("id") int id, Account a){
-        return createAccount(id, a);
-    }
 
 }

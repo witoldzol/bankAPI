@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BankServices {
+public class CustomerServices {
     
     // initialize list to hold our customers
     public static List<Customer> list = new ArrayList<>();
    
     //constructor - no parameter
-    public BankServices () {
+    public CustomerServices () {
        
     }
     
@@ -70,26 +70,7 @@ public class BankServices {
         return c;
     }
     
-    //----------------------------
-    // ACCOUNTS
-    //----------------------------
     
-    
-    //list all accounts for single customer
-    public List<Account> getAllAccounts(int id){
-        //get customer
-        Customer c = list.get(id -1);
-        //get list of all accounts 
-        return c.getAccounts();
-    }
-    
-    //create account for given customer
-    public Account createAccount(int id, Account a){
-        //get customer
-        Customer c = list.get(id - 1);
-        //create account ( method returns String response with a/c type and number)
-        return c.createAccount(a);
-    }
     
     
 }
