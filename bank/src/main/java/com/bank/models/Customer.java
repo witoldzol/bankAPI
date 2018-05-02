@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
+
 @XmlRootElement
 public class Customer {
     private int id;
     private String name, address, loginName, password;
     private ArrayList<Account> accounts = new ArrayList();
+   
     
     public Customer(){}
 
@@ -27,18 +29,33 @@ public class Customer {
         this.address = address;
         this.loginName = loginName;
         this.password = password;
-        accounts.add(new Account("dd",0,0,0));
+        //accounts = new ArrayList();
     }
     
     public ArrayList<Account> getAccounts(){
         return accounts;
     }
     
-    public Account createAccount(Account a){
-        accounts.add(a);
-        return accounts.get(accounts.size());
+    public int getNumberOfAccount(){
+        return accounts.size();
     }
     
+    public Account createAccount(Account a){
+        accounts.add(a);
+        return a;
+    }
+    
+    public void deleteAccount(Account a){
+        
+        int accNum = a.getNumber();
+        
+        for (Account account : accounts) {
+            if(account.getNumber() == accNum){
+                accounts.remove(account);
+            }
+        }
+        
+    }
     public int getId() {
         return id;
     }

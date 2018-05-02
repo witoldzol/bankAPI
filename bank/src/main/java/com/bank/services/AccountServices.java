@@ -23,17 +23,13 @@ public class AccountServices {
     public ArrayList<Account> getAllAccounts(int id){
         //get customer
         Customer c = customers.get(id -1);
-        
-        System.err.println("number of accounts is : " + c.getAccounts().size() );
         //get list of all accounts 
         ArrayList a = c.getAccounts();
-        
         if(a.size() == 0){
             return null;
         } else {
             return a;
         }
-        
     }
     
     //create account for given customer
@@ -43,6 +39,11 @@ public class AccountServices {
         //create account ( method returns String response with a/c type and number)
         return c.createAccount(a);
     }
-    
-    
+    //update account
+    public void deleteAccount(int id, Account a){
+        //get customer
+        Customer c = customers.get(id - 1);
+        //return updated account
+        c.deleteAccount(a);
+    }
 }

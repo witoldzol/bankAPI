@@ -23,15 +23,10 @@ public class CustomerServices {
     }
     
     public Customer createCustomer(Customer c){
-        
         //adjust id number as per list size
         c.setId(customers.size() + 1);
-        
         //add customer to the list
         customers.add(c);    
-        
-        System.out.println("size of database " + customers.size());
-        
         return customers.get(customers.size() - 1);
     }
     
@@ -48,13 +43,8 @@ public class CustomerServices {
         if (id <= 0) {
             return null;
         }
-        
         //update customer data
         customers.set(id - 1, c);
-        
-        //debugging print out
-        System.out.println("Customer id " + id + " has been updated");
-        
         //return customer object
         return customers.get(id - 1 );
     }

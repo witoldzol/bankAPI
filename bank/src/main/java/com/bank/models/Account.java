@@ -6,7 +6,6 @@
 package com.bank.models;
 
 import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -17,21 +16,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Account {
  
-    private String type;
+    private String type;  
     private int sortCode, number, currentBalance;
-    private ArrayList<Transaction> transactions;
+    private ArrayList<Transaction> transactions = new ArrayList();
     
     
-    public Account() {
-        
-    }
-
+    public Account() {}
+    
     public Account( String type, int sortCode, int number, int currentBalance) {
         this.type = type;
         this.sortCode = sortCode;
         this.number = number;
         this.currentBalance = currentBalance;
-        transactions = new ArrayList();
     }
 
     public String getType() {
@@ -42,8 +38,7 @@ public class Account {
         this.type = type;
     }
 
-    
-    public long getSortCode() {
+    public int getSortCode() {
         return sortCode;
     }
 
@@ -51,7 +46,7 @@ public class Account {
         this.sortCode = sortCode;
     }
 
-    public long getNumber() {
+    public int getNumber() {
         return number;
     }
 
@@ -59,13 +54,23 @@ public class Account {
         this.number = number;
     }
 
-    public long getCurrentBalance() {
+    public int getCurrentBalance() {
         return currentBalance;
     }
 
     public void setCurrentBalance(int currentBalance) {
         this.currentBalance = currentBalance;
     }
+
+    public ArrayList<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    
     
     
 }

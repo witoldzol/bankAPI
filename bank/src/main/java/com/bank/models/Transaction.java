@@ -8,10 +8,7 @@ package com.bank.models;
 import java.util.Date;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author esu
- */
+
 @XmlRootElement
 public class Transaction {
     

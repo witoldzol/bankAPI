@@ -5,6 +5,7 @@
  */
 package com.bank.resources;
 
+import com.bank.models.Account;
 import com.bank.models.Customer;
 import com.bank.services.CustomerServices;
 import java.util.ArrayList;
@@ -56,10 +57,11 @@ public class CustomerResources {
         return cs.removeCustomer(id);        
     }
     //---------------------   Path to ACCOUNTS sub rescource
+    
     @Path("/{id}/accounts")
     public AccountResources getResources(){
         return new AccountResources();
     }
     
-
+    
 }
