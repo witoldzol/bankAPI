@@ -39,11 +39,18 @@ public class AccountServices {
         //create account ( method returns String response with a/c type and number)
         return c.createAccount(a);
     }
-    //update account
+    
+    //delete account by account number
     public void deleteAccount(int id, Account a){
         //get customer
         Customer c = customers.get(id - 1);
         //return updated account
         c.deleteAccount(a);
+    }
+    
+    //delete account by id number ( order in array )
+    public void deleteAccount(int id, int accountId){
+        Customer c = customers.get(id - 1);
+        c.getAccounts().remove(accountId);
     }
 }

@@ -31,7 +31,7 @@ public class AccountResources {
    
     //create account 
     @POST
-    public Account getCustomers(@PathParam("id") int id, Account a)throws NullPointerException{
+    public Account getCustomers(@PathParam("id") int id, Account a) throws NullPointerException{
         try {
             return as.createAccount(id, a);
         } catch (Exception e) {
@@ -41,7 +41,7 @@ public class AccountResources {
     }
     //return accounts for given Customer
     @GET
-    public ArrayList<Account> getAccounts(@PathParam("id") int id) throws NullPointerException{
+    public ArrayList<Account> getAllAccounts(@PathParam("id") int id) throws NullPointerException{
         ArrayList<Account> al = null;
         try {
             al = as.getAllAccounts(id);
@@ -50,11 +50,51 @@ public class AccountResources {
         } 
         return al;
     }
-    //update account 
+    
+    //return specific account for customer
+    @GET
+    @Path("/{accountId}")
+    public Account getAccount(@PathParam("id") int id, 
+                              @PathParam("accountId") int accountId) 
+                              throws NullPointerException
+    {
+        ArrayList<Account> al = null;
+        try {
+            return as.getAllAccounts(id).get(accountId);
+            
+        } catch (Exception e) {
+            System.err.println("error: " + e);
+        } 
+        return null;
+    }
+    
+    //delete account by account number 
     @DELETE
     public String deleteAccount(@PathParam("id") int id, Account a) {
        as.deleteAccount(id, a); 
        return "Account number" + a.getNumber() + " deleted";
+    }
+    
+    //delete account by id number (order in array list)
+    @DELETE
+    @Path("/{accountId}")
+    public String deleteAccount(@PathParam("id") int id,
+                                @PathParam("accountId") int accountId)
+                                throws NullPointerException
+    {
+        try {
+            as.deleteAccount(id, accountId);
+            return "Account id " + accountId + " has been deleted";
+        } catch (Exception e) {
+            System.err.println("error: " + e);
+        }
+        return null;
+    }
+    
+    //---------------------   Path to TRANSACTIONS sub rescource
+    @Path("/{id}/accounts/transactions")
+    public AccountResources getResources(){
+        return new AccountResources();
     }
     
     

@@ -13,6 +13,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Transaction {
     
     private Date date;
+    private double amount;
     //type: two options: Debit or Credit
     private String type, description;
     private long newBalance;
@@ -20,11 +21,20 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(String type, String description, long newBalance) {
+    public Transaction(String type, double amount, String description, long newBalance) {
         this.date = new Date();
         this.type = type;
+        this.amount = amount;
         this.description = description;
         this.newBalance = newBalance;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 
     public Date getDate() {

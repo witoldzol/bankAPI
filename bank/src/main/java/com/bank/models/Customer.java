@@ -32,6 +32,7 @@ public class Customer {
         //accounts = new ArrayList();
     }
     
+    
     public ArrayList<Account> getAccounts(){
         return accounts;
     }
