@@ -28,15 +28,16 @@ public class TransactionResources {
     
     //get all transactions for given account
     @GET
-    @Path("/{accountId")
     public ArrayList<Transaction> getAllTransactions(@PathParam("id") int id, 
                                                      @PathParam("accountId") int accountId)
                                                      throws NullPointerException
     {
-        try{
+        try
+        {
             Account a = as.getAllAccounts(id).get(accountId);
             return a.getTransactions();
-        } catch(NullPointerException e){
+        } 
+        catch(NullPointerException e){
             System.err.println(e);
         }
         return null;
@@ -48,7 +49,11 @@ public class TransactionResources {
                                          @PathParam("accountId") int accountId,
                                          Transaction t)
     {
-        tr.createTransaction(id, accountId, t);
+        System.out.println("id" + id);
+        System.out.println("accountid" + accountId);
+        System.out.println("transaction" + t);
+        
+        return ts.createTransaction(id, accountId, t);
         
     }
     

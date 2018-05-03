@@ -16,12 +16,12 @@ public class Transaction {
     private double amount;
     //type: two options: Debit or Credit
     private String type, description;
-    private long newBalance;
+    private double newBalance;
 
     public Transaction() {
     }
 
-    public Transaction(String type, double amount, String description, long newBalance) {
+    public Transaction(String type, double amount, String description, double newBalance) {
         this.date = new Date();
         this.type = type;
         this.amount = amount;
@@ -61,11 +61,11 @@ public class Transaction {
         this.description = description;
     }
 
-    public long getNewBalance() {
+    public double getNewBalance() {
         return newBalance;
     }
 
-    public void setNewBalance(long newBalance) {
+    public void setNewBalance(double newBalance) {
         this.newBalance = newBalance;
     }
     

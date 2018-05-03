@@ -92,9 +92,9 @@ public class AccountResources {
     }
     
     //---------------------   Path to TRANSACTIONS sub rescource
-    @Path("/{id}/accounts/transactions")
-    public AccountResources getResources(){
-        return new AccountResources();
+    @Path("/{accountId}/transactions")
+    public TransactionResources getResources(){
+        return new TransactionResources();
     }
     
     

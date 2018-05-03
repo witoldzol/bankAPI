@@ -21,7 +21,7 @@ public class TransactionServices {
     private ArrayList<Customer> customers = Database.getCustomers();
     
     public Transaction createTransaction( int customerId, int accountId, Transaction t){
-        Customer c = customers.get(customerId);
+        Customer c = customers.get(customerId - 1);
         Account a = c.getAccounts().get(accountId);
         ArrayList tl = a.getTransactions();
         tl.add(t);
