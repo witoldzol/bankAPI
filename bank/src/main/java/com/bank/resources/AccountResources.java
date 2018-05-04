@@ -68,6 +68,18 @@ public class AccountResources {
         return null;
     }
     
+    //returns balance of the account
+    @GET
+    public String getBalance(@PathParam("id") int id,
+                             int accountNumber)
+    {
+        //get array of accounts
+        ArrayList al = as.getAllAccounts(id);
+        //get balance and return it as string
+        return as.getBalance(al, accountNumber);
+        
+    }
+    
     //delete account by account number 
     @DELETE
     public String deleteAccount(@PathParam("id") int id, Account a) {
