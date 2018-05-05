@@ -20,9 +20,7 @@ public class TransactionServices {
     //get data from 'database'
     private ArrayList<Customer> customers = Database.getCustomers();
     
-    public Transaction createTransaction( int customerId, int accountId, Transaction t){
-        Customer c = customers.get(customerId - 1);
-        Account a = c.getAccounts().get(accountId);
+    public Transaction createTransaction(Account a, Transaction t){
         ArrayList tl = a.getTransactions();
         tl.add(t);
         return t;

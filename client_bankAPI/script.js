@@ -195,12 +195,35 @@ function displayBalance(response){
                             }
                     }
                 })
-    //append
-  
+    //display balance in html element
     $('#balanceDisplay').html(bal)
 }
 
-// 
+//---------------------------- WITHDRAW AMOUNT FROM ACCOUNT
+//listener
+$('#withdraw').click( withdraw )
+
+function withdraw(){
+    //define uri
+    uri="http://localhost:49000/banking/customers"
+    //vars
+    let amount = $('#withdrawAmount').val()
+    let accountNumber = $('#withdrawAccountNumber').val()
+    //check if empty
+    if(accountNumber == "" || amount == ""){alert('no empty values allowed'); return}
+    //url
+    let url = uri + "/" + currentUser.id + "/accounts/" + accountNumber + "/transactions/withdraw/" + amount
+    cl('url is : ' + url)
+    //api call
+    apiCall(url, displayWithdrawConfirmation )
+    //reset settings
+    resetSettings()
+
+}
+function displayWithdrawConfirmation(response){
+    cl(response)
+    alert('Withdraw complete. Your new balance is ' + response["newBalance"])
+}
 
 
 /*

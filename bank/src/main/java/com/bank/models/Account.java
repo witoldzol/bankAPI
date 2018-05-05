@@ -18,7 +18,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Account {
  
     private String type;  
-    private int sortCode, number, currentBalance;
+    private int sortCode, number;
+    private double currentBalance;
     private ArrayList<Transaction> transactions = new ArrayList();
     
     
@@ -65,11 +66,11 @@ public class Account {
         this.number = number;
     }
 
-    public int getCurrentBalance() {
+    public double getCurrentBalance() {
         return currentBalance;
     }
 
-    public void setCurrentBalance(int currentBalance) {
+    public void setCurrentBalance(double currentBalance) {
         this.currentBalance = currentBalance;
     }
 

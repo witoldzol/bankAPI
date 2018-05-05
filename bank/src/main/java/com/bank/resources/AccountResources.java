@@ -55,14 +55,15 @@ public class AccountResources {
     
     //return specific account for customer
     @GET
-    @Path("/{accountId}")
+    @Path("/{accountNumber}")
     public Account getAccount(@PathParam("id") int id, 
-                              @PathParam("accountId") int accountId) 
+                              @PathParam("accountNumber") int accountNumber) 
                               throws NullPointerException
     {
         ArrayList<Account> al = null;
         try {
-            return as.getAllAccounts(id).get(accountId);
+            al = as.getAllAccounts(id);
+            as.getAccount(al, accountNumber);
             
         } catch (Exception e) {
             System.err.println("error: " + e);
@@ -107,7 +108,7 @@ public class AccountResources {
     }
     
     //---------------------   Path to TRANSACTIONS sub rescource
-    @Path("/{accountId}/transactions")
+    @Path("/{accountNumber}/transactions")
     public TransactionResources getResources(){
         return new TransactionResources();
     }

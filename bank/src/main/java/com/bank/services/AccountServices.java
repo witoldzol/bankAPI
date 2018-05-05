@@ -19,6 +19,16 @@ public class AccountServices {
     //get data from 'database'
     private ArrayList<Customer> customers = Database.getCustomers();
     
+    //get a single account
+    public Account getAccount(ArrayList<Account> al, int accountNumber){
+        for (Account account : al) {
+            if (account.getNumber() == accountNumber) {
+                return account;
+            }
+        }
+        return null;
+    }
+    
     //list all accounts for single customer
     public ArrayList<Account> getAllAccounts(int id){
         //get customer
