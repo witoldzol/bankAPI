@@ -1,9 +1,10 @@
 <html>
 <head>
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.min.js"
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
       integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
       crossorigin="anonymous"></script>
+    <!-- styles -->  
+    <link rel="stylesheet" type="text/css" href="styles.css">  
 
 </head>
 <body id='bod'>
@@ -11,8 +12,8 @@
     <button type="submit" onclick="javascript:send()">call</button>
     <!-- login -->
     <button type="submit" id="login">LOGIN</button>
-    <label>login</label><input type="text" id="loginName">    
-    <label>password</label><input type="text" id="password">    
+    <label>login</label><input type="text" id="loginName" value="a">    
+    <label>password</label><input type="text" id="password" value="a">    
 
     <hr/>
     <!-- create new user -->
@@ -29,30 +30,39 @@
     </div>
     <hr/>
 
-
-
     <div id="greeting"></div>
     <div id='display'></div>
     <div id="inputsForm" style="visibility: hidden;">
         <div class="buttonAndInputs">
+            <button type="submit" id="createAccount">CREATE ACCOUNT</button>
+            <div><label>Enter account name </label><textarea rows="1" cols="20" id="accountName"></textarea></div>
+        </div>
+        <div class="buttonAndInputs">
+            <button type="submit" id="listAccounts">LIST YOUR ACCOUNTS</button>
+        </div>
+        <div class="buttonAndInputs">
             <button type="submit" id="balance">GET CURRENT BALANCE</button>
-            
+            <div><label>Your account number </label><textarea rows="1" cols="20" ></textarea></div>
+            <div><label>Your courrent balance</label><textarea rows="1" cols="20" ></textarea></div>
         </div>
         <div class="buttonAndInputs">
             <button type="submit" id="withdraw">WITHDRAW</button>
-            
+            <div><label>Amount</label><textarea rows="1" cols="20" ></textarea></div>
+            <div><label>Your account number </label><textarea rows="1" cols="20" ></textarea></div>
+            <div><label>Credit card to be debited</label><textarea rows="1" cols="20" ></textarea></div>
         </div>
         <div class="buttonAndInputs">
             <button type="submit" id="transfer">TRANSFER</button>
-            
+            <div><label>Amount</label><textarea rows="1" cols="20" ></textarea></div>
+            <div><label>Your account number </label><textarea rows="1" cols="20" ></textarea></div>
+            <div><label>Destination account</label><textarea rows="1" cols="20" ></textarea></div>
+
         </div>
         <div class="buttonAndInputs">
             <button type="submit" id="lodge">LODGE</button>
-            
-        </div>
-        <div class="buttonAndInputs">
-            <button type="submit" id="createAccount">CREATE ACCOUNT</button>
-            
+            <div><label>Amount</label><textarea rows="1" cols="20" ></textarea></div>
+            <div><label>Your account number </label><textarea rows="1" cols="20" ></textarea></div>
+            <div><label>Credit card to be credited</label><textarea rows="1" cols="20" ></textarea></div>
         </div>
     </div>
 

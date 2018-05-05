@@ -1,0 +1,23 @@
+#greeting{
+	text-align: center;
+	font-size: 30px;
+	background-color: pink;
+	color: white;
+}
+
+.buttonAndInputs{
+	border: solid blue 1px;
+	margin: 10px;
+}
+
+textarea{
+	display: block;
+	margin: 5px;
+}
+
+button{
+	background-color: dodgerblue;
+	color: white;
+	font-weight: bold;
+	margin: 5px;
+}
