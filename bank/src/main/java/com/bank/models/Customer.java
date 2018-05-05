@@ -29,7 +29,7 @@ public class Customer {
         this.address = address;
         this.loginName = loginName;
         this.password = password;
-        //accounts = new ArrayList();
+        
     }
     
     
