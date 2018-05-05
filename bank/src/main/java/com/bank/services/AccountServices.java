@@ -52,11 +52,11 @@ public class AccountServices {
     
     
     //create account for given customer
-    public Account createAccount(int id, Account a){
+    public Account createAccount(int id, String type){
         //get customer
         Customer c = customers.get(id - 1);
         //create account ( method returns String response with a/c type and number)
-        return c.createAccount(a);
+        return c.createAccount(type);
     }
     
     //delete account by account number

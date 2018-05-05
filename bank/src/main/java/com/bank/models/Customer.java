@@ -32,7 +32,6 @@ public class Customer {
         
     }
     
-    
     public ArrayList<Account> getAccounts(){
         return accounts;
     }
@@ -41,8 +40,12 @@ public class Customer {
         return accounts.size();
     }
     
-    public Account createAccount(Account a){
+    public Account createAccount(String type){
+        //create new account
+        Account a = new Account(type);
+        //add it to the list 
         accounts.add(a);
+        
         return a;
     }
     

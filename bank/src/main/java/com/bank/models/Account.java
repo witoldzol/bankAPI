@@ -6,6 +6,7 @@
 package com.bank.models;
 
 import java.util.ArrayList;
+import java.util.Random;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -21,15 +22,25 @@ public class Account {
     private ArrayList<Transaction> transactions = new ArrayList();
     
     
+    Random rand = new Random();
+    
     public Account() {}
     
-    public Account( String type, int sortCode, int number, int currentBalance) {
+    public Account( String type ) {
         this.type = type;
-        this.sortCode = sortCode;
-        this.number = number;
-        this.currentBalance = currentBalance;
+        this.sortCode = generateSortCode();
+        this.number = generateAccountNumber();
+        this.currentBalance = 0;
     }
 
+    private int generateSortCode(){
+        return rand.nextInt(888) + 111;
+    }
+    
+    private int generateAccountNumber() {
+        return rand.nextInt(888888) + 111111;
+    }
+    
     public String getType() {
         return type;
     }

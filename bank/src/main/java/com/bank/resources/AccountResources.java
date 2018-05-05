@@ -31,14 +31,15 @@ public class AccountResources {
    
     //create account 
     @POST
-    public Account getCustomers(@PathParam("id") int id, Account a) throws NullPointerException{
+    public Account createAccount(@PathParam("id") int id, String type) throws NullPointerException{
         try {
-            return as.createAccount(id, a);
+            return as.createAccount(id, type);
         } catch (Exception e) {
             System.err.println(e);
         }
-        return a;
+        return null;
     }
+    
     //return accounts for given Customer
     @GET
     public ArrayList<Account> getAllAccounts(@PathParam("id") int id) throws NullPointerException{
@@ -70,8 +71,9 @@ public class AccountResources {
     
     //returns balance of the account
     @GET
+    @Path("/{accountNumber}/balance")
     public String getBalance(@PathParam("id") int id,
-                             int accountNumber)
+                             @PathParam("accountId") int accountNumber)
     {
         //get array of accounts
         ArrayList al = as.getAllAccounts(id);
