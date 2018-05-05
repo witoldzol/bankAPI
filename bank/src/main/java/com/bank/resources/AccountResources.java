@@ -20,6 +20,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+
 // this is a sub resource, 
 // path param is already defined in parent file
 @Consumes(MediaType.APPLICATION_JSON)
@@ -69,17 +70,17 @@ public class AccountResources {
         return null;
     }
     
-    //returns balance of the account
+    //returns balance of the account as string
     @GET
     @Path("/{accountNumber}/balance")
     public String getBalance(@PathParam("id") int id,
-                             @PathParam("accountId") int accountNumber)
+                             @PathParam("accountNumber") int accountNumber)
     {
+        String s;
         //get array of accounts
         ArrayList al = as.getAllAccounts(id);
         //get balance and return it as string
-        return as.getBalance(al, accountNumber);
-        
+        return  s = as.getBalance(al, accountNumber);
     }
     
     //delete account by account number 

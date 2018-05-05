@@ -33,10 +33,9 @@ function resetSettings(){
 function apiCall(uri, method){
     //update uri
     settings.url = uri
-    cl(settings.url)
     //make a call
     $.ajax(settings)
-        .done(response=>{method(response)})
+        .done(response=>{cl(response); method(response)})
 }
 
 // -----------------------------   LOGIN
@@ -111,9 +110,7 @@ $('#listAccounts').click( listAccounts )
 //list accounts in display area
 function listAccounts(){
     let url = uri + "/" + currentUser.id + "/accounts"
-    cl(url)
     apiCall(url, displayElements )
-    
 }
 //append elements to display area
 function displayElements(response){
@@ -162,21 +159,51 @@ function createAccount(){
     settings.headers["Content-Type"]="application/json"
     settings.processData = false
     settings.data = type
-    cl('passed in url' + url)
     //api call
-    apiCall(url, cl)
+    apiCall(url, function(x){alert('Account has been created')})
     //reset settings
     resetSettings()
 }
 
+// -------------- GET ACCOUNT BALANCE
+$('#balance').click( getBalance )
+//get account
+function getBalance(){
+    //define uri
+    uri="http://localhost:49000/banking/customers"
+    //get account number
+    let accountNumber = $('#accountNumber').val()
+    
+    //check if empty
+    if(accountNumber == ""){alert('enter ac number'); return}
+    //construct url to be passed in
+    //let url = uri + "/" + currentUser.id + "/accounts/"+ accountNumber +"/balance"
+    let url = uri + "/" + currentUser.id + "/accounts"
+    //api call
+    apiCall(url, displayBalance )
+    //reset settings
+    resetSettings()
+}
+//extract balance from account and display it
+function displayBalance(response){
+    let bal
+    response.map( obj=>{
+                        for(x in obj){
+                            let accountNumber = $('#accountNumber').val()
+                            if(x == "number" && obj["number"] == accountNumber){
+                                bal = obj["currentBalance"]
+                            }
+                    }
+                })
+    //append
+  
+    $('#balanceDisplay').html(bal)
+}
 
-
-
-
+// 
 
 
 /*
-
 
 // SEND API CALL
 function send(uri){
@@ -209,6 +236,3 @@ function send(uri){
         })
 }
 */
-function display(){
-
-}

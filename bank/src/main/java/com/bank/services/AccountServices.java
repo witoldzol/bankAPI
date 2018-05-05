@@ -34,20 +34,16 @@ public class AccountServices {
     
     //return balance of account (by acc number)
     public String getBalance(ArrayList<Account> al, int accountNumber){
-        int balance;
-        String s;
-        
+        double balance;
+        String response;
         for (Account account : al) {
             if(account.getNumber() == accountNumber){
                 balance = account.getCurrentBalance();
-                return s = "Balance of account number " + accountNumber + " is : " + balance;
-            }
-            else{
-                return "Unable to find any balance";
+                return response = "Balance is " + balance;
             }
                     
         }
-        return "Unable to find any balance";
+        return "Account not found";
     }
     
     
