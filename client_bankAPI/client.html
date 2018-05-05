@@ -1,47 +1,60 @@
-
-
 <html>
-    <head>
-        <script
-          src="https://code.jquery.com/jquery-3.3.1.min.js"
-          integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-          crossorigin="anonymous"></script>
+<head>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
 
-    </head>
+</head>
 <body id='bod'>
 
-<button type="submit" onclick="javascript:send()">call</button>
-<button type="submit" id="login">LOGIN</button>
-<label>login</label><input type="text" id="loginName">    
-<label>password</label><input type="text" id="password">    
-<div id="greeting"></div>
+    <button type="submit" onclick="javascript:send()">call</button>
+    <!-- login -->
+    <button type="submit" id="login">LOGIN</button>
+    <label>login</label><input type="text" id="loginName">    
+    <label>password</label><input type="text" id="password">    
 
-<div id='display'>
-    
+    <hr/>
+    <!-- create new user -->
+    <button type="submit" id="createUser">CREATE USER</button>
 
-</div>
-<div id="inputsForm" style="visibility: hidden;">
-    <div class="buttonAndInputs">
-        <button type="submit" id="balance">GET CURRENT BALANCE</button>
-        
+    <div id="newUserinputsForm" style="visibility: hidden;">
+
+        <label>name</label><input type="text" id="newUserName">    
+        <label>address</label><input type="text" id="newUserAddress">    
+        <label>login</label><input type="text" id="newUserLogin">    
+        <label>password</label><input type="text" id="newUserPassword"> 
+        <button type="submit" id="submitNewUser">SUBMIT NEW USER</button>
+
     </div>
-    <div class="buttonAndInputs">
-        <button type="submit" id="withdraw">WITHDRAW</button>
-        
+    <hr/>
+
+
+
+    <div id="greeting"></div>
+    <div id='display'></div>
+    <div id="inputsForm" style="visibility: hidden;">
+        <div class="buttonAndInputs">
+            <button type="submit" id="balance">GET CURRENT BALANCE</button>
+            
+        </div>
+        <div class="buttonAndInputs">
+            <button type="submit" id="withdraw">WITHDRAW</button>
+            
+        </div>
+        <div class="buttonAndInputs">
+            <button type="submit" id="transfer">TRANSFER</button>
+            
+        </div>
+        <div class="buttonAndInputs">
+            <button type="submit" id="lodge">LODGE</button>
+            
+        </div>
+        <div class="buttonAndInputs">
+            <button type="submit" id="createAccount">CREATE ACCOUNT</button>
+            
+        </div>
     </div>
-    <div class="buttonAndInputs">
-        <button type="submit" id="transfer">TRANSFER</button>
-        
-    </div>
-    <div class="buttonAndInputs">
-        <button type="submit" id="lodge">LODGE</button>
-        
-    </div>
-    <div class="buttonAndInputs">
-        <button type="submit" id="createAccount">CREATE ACCOUNT</button>
-        
-    </div>
-</div>
 
         <script type="text/javascript" src="script.js"></script>
 </body>
