@@ -17,7 +17,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MediaType;  
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -27,6 +27,18 @@ public class TransactionResources {
     TransactionServices ts = new TransactionServices();
     //instantiate account services
     AccountServices as = new AccountServices();
+    
+    //retreives single transaction that matches specified amount for given account
+    @GET
+    @Path("/{amount}")
+    public Transaction getTransaction(@PathParam("id") int id,
+                                      @PathParam("accountNumber") int accountNumber,
+                                      @PathParam("amount") double amount){
+        ArrayList al = as.getAllAccounts(id);
+        Account a = as.getAccount(al, accountNumber);
+        Transaction t = ts.getTransaction(a, amount);
+        return t;
+    }
     
     //get all transactions for given account
     @GET

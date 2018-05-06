@@ -25,6 +25,16 @@ public class TransactionServices {
         tl.add(t);
         return t;
     }
+
+    public Transaction getTransaction(Account a, double amount) {
+        ArrayList<Transaction> tl = a.getTransactions();
+        for (Transaction transaction : tl) {
+            if(transaction.getAmount() == amount){
+                return transaction;
+            }
+        }
+        return null;
+    }
     
     
 }
