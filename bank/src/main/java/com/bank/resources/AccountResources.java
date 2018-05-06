@@ -26,10 +26,8 @@ import javax.ws.rs.core.MediaType;
  */
 // this is a sub resource, 
 // path param is already defined in parent file
-//@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-//@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
+@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 public class AccountResources {
     
     //instantiate customer services
