@@ -90,22 +90,7 @@ public class AccountResources {
        as.deleteAccount(id, a); 
        return "Account number" + a.getNumber() + " deleted";
     }
-    
-    //delete account by id number (order in array list)
-    @DELETE
-    @Path("/{accountId}")
-    public String deleteAccount(@PathParam("id") int id,
-                                @PathParam("accountId") int accountId)
-                                throws NullPointerException
-    {
-        try {
-            as.deleteAccount(id, accountId);
-            return "Account id " + accountId + " has been deleted";
-        } catch (Exception e) {
-            System.err.println("error: " + e);
-        }
-        return null;
-    }
+   
     
     //---------------------   Path to TRANSACTIONS sub rescource
     @Path("/{accountNumber}/transactions")
