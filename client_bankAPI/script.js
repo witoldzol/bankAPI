@@ -35,7 +35,7 @@ function apiCall(uri, method){
     settings.url = uri
     //make a call
     $.ajax(settings)
-        .done(response=>{cl(response); method(response)})
+        .done(response=>{method(response)})
 }
 
 // -----------------------------   LOGIN
@@ -198,6 +198,29 @@ function displayBalance(response){
     //display balance in html element
     $('#balanceDisplay').html(bal)
 }
+//----------------------------- LODGE MONIES TO ACCOUNT
+//listener
+$('#lodge').click( lodge )
+//lodge funds main function
+function lodge(){
+    //define uri
+    uri="http://localhost:49000/banking/customers"
+    //vars
+    let amount = $('#lodgeAmount').val()
+    let accountNumber = $('#lodgeAccountNumber').val()
+    //check if empty
+    if(accountNumber == "" || amount == ""){alert('no empty values allowed'); return}
+    //url
+    let url = uri + "/" + currentUser.id + "/accounts/" + accountNumber + "/transactions/lodge/" + amount
+    //api call
+    apiCall(url, displayLodgeConfirmation )
+    //reset settings
+    resetSettings()
+}
+//helper function -- operates on ajax response
+function displayLodgeConfirmation(){
+    alert('Lodge complete. Thank you!');
+}
 
 //---------------------------- WITHDRAW AMOUNT FROM ACCOUNT
 //listener
@@ -213,7 +236,6 @@ function withdraw(){
     if(accountNumber == "" || amount == ""){alert('no empty values allowed'); return}
     //url
     let url = uri + "/" + currentUser.id + "/accounts/" + accountNumber + "/transactions/withdraw/" + amount
-    cl('url is : ' + url)
     //api call
     apiCall(url, displayWithdrawConfirmation )
     //reset settings
@@ -221,41 +243,46 @@ function withdraw(){
 
 }
 function displayWithdrawConfirmation(response){
-    cl(response)
     alert('Withdraw complete. Your new balance is ' + response["newBalance"])
 }
 
 
-/*
+//---------------------------- TRANSFER BETWEEN ACCOUNTS
+//listener
+$('#transfer').click( transfer )
 
-// SEND API CALL
-function send(uri){
-    $.ajax(settings)
-        .done( response=> {
-            response.map( obj=>{
-                cl(obj)
-                ele += "<div id='response'>"
-                for(x in obj){
-                    ele +="<div>" + obj[x] + "</div>"
-                }
-                ele +="<hr/></div>"
-            })
-            document.getElementById("display").innerHTML = ele;
-        })
+function transfer(){
+    //define uri
+    uri="http://localhost:49000/banking/customers"
+    //vars
+    let amount = $('#transferAmount').val()
+    let accountNumber = $('#transferAccountNumber').val()
+    let destinationAccountNumber = $('#destinationAccountNumber').val()
+    //json the body of POST 
+    let type = '{\"number\": \"' + destinationAccountNumber + '\"\n    }'
+    //update ajax options 
+    settings.method = "POST"
+    settings.headers["Content-Type"]="application/json"
+    settings.processData = false
+    settings.data = type
+    //check if empty
+    if(accountNumber == "" || amount == "" || destinationAccountNumber == ""){alert('no empty values allowed'); return}
+    //url
+    let url = uri + "/" + currentUser.id + "/accounts/" + accountNumber + "/transactions/" + amount
+    //api call
+    apiCall(url, displayTransferConfirmation )
+    //reset settings
+    resetSettings()
+
 }
 
-function send(uri){
-    $.ajax(settings)
-        .done( response => {
-            response.map( y=>{
-                ele += "<div id='wrapper'>"
-                for(x in obj){
-                    ele +="<div>" + obj[x].name + "</div>"
-                }
-                ele +="</div>"
-                document.getElementById("display").innerHTML = ele;
-            })  
-            
-        })
+function displayTransferConfirmation(response){
+    alert('Transfer complete.')
 }
-*/
+
+// ----------------  clean up fields on login
+$('#login').click( cleanUp )
+function cleanUp(){
+    $('textarea').val('')
+    $('#response').empty()
+}

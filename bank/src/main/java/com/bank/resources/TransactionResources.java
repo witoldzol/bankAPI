@@ -44,13 +44,14 @@ public class TransactionResources {
         }
         return null;
     }
+    
     //withdraw funds
     @GET
     @Path("/withdraw/{amount}")
     public Transaction withdrawFromAccount(@PathParam("id") int id,
             @PathParam("accountNumber") int accountNumber,
-            @PathParam("amount") double amount,
-            Transaction t) {
+            @PathParam("amount") double amount) 
+    {
         String type = "Credit";
         String description = "Withdraw from account";
         double newBalance;
@@ -75,5 +76,81 @@ public class TransactionResources {
         return tra;
     }
     
-    
+    //lodge funds to account
+    @GET
+    @Path("/lodge/{amount}")
+    public Transaction lodgeToAccount(@PathParam("id") int id,
+            @PathParam("accountNumber") int accountNumber,
+            @PathParam("amount") double amount) 
+    {
+        String type = "Debit";
+        String description = "Lodged to account";
+        double newBalance;
+        //get all accounts for given usr id
+        ArrayList<Account> al = as.getAllAccounts(id);
+        //get matching account
+        Account a = as.getAccount(al, accountNumber);
+        //calculate new balance
+        newBalance = a.getCurrentBalance() + amount;
+        //set new balance
+        a.setCurrentBalance(newBalance);
+        //create transaction
+        Transaction tra = new Transaction(type, amount, description, newBalance);
+        //record transaction
+        ts.createTransaction(a, tra);
+
+        return tra;
+    }
+    //transfer funds between accounts
+    //creates two transactions (for both accounts)
+    @POST
+    @Path("/{amount}")
+    public Transaction transferBetweenAccounts(@PathParam("id") int id,
+            @PathParam("accountNumber") int accountNumber,
+            @PathParam("amount") double amount,
+            Account destinationAccount) 
+    {
+        // origin account -- from we send money
+        String type = "Credit";
+        String description = "Transferred to account " + destinationAccount.getNumber();
+        double newBalance;
+        //get all accounts for given usr id
+        ArrayList<Account> al = as.getAllAccounts(id);
+        //get matching account
+        Account a = as.getAccount(al, accountNumber);
+        //get all accounts in database
+        ArrayList<Account> allAccounts = as.getAccountsAllUsers();
+        //find destination account
+        Account destination = as.getAccount(allAccounts, destinationAccount.getNumber());
+        System.out.println("Destination account object" + destination);
+        //check if destination account exists
+        if(destination == null){
+            System.out.println("Destination account doesn't exist");
+            return null;
+        }
+        //check if we have enough funds on the account
+        if ((a.getCurrentBalance() - amount) < 0) {
+            System.out.println("Insufficient funds");
+            return null;
+        }
+        //calculate new balance for origin
+        newBalance = a.getCurrentBalance() - amount;
+        //set new balance
+        a.setCurrentBalance(newBalance);
+        //create transaction
+        Transaction tra = new Transaction(type, amount, description, newBalance);
+        //record transaction
+        ts.createTransaction(a, tra);
+        // destination account 
+        type = "Debit";
+        description = "Transfer from account " + accountNumber;
+        //set new balance for destination acc
+        newBalance = destination.getCurrentBalance() + amount;
+        destination.setCurrentBalance(newBalance);
+        //create transaction
+        Transaction destinationTra = new Transaction(type, amount, description, newBalance);
+        ts.createTransaction(destination, destinationTra);
+        
+        return tra;
+    }
 }

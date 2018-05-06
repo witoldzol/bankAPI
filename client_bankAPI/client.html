@@ -8,8 +8,6 @@
 
 </head>
 <body id='bod'>
-
-    <button type="submit" onclick="javascript:send()">call</button>
     <!-- login -->
     <button type="submit" id="login">LOGIN</button>
     <label>login</label><input type="text" id="loginName" value="a">    
@@ -46,23 +44,23 @@
             <div><label>Your courrent balance</label><textarea rows="1" cols="20" id="balanceDisplay"></textarea></div>
         </div>
         <div class="buttonAndInputs">
+            <button type="submit" id="lodge">LODGE</button>
+            <div><label>Amount</label><textarea rows="1" cols="20" id="lodgeAmount"></textarea></div>
+            <div><label>Your account number </label><textarea rows="1" cols="20" id="lodgeAccountNumber"></textarea></div>
+            
+        </div>
+        <div class="buttonAndInputs">
             <button type="submit" id="withdraw">WITHDRAW</button>
             <div><label>Amount</label><textarea rows="1" cols="20" id="withdrawAmount"></textarea></div>
             <div><label>Your account number </label><textarea rows="1" cols="20" id="withdrawAccountNumber"></textarea></div>
-            <div><label>Credit card to be debited</label><textarea rows="1" cols="20" ></textarea></div>
+            
         </div>
         <div class="buttonAndInputs">
             <button type="submit" id="transfer">TRANSFER</button>
-            <div><label>Amount</label><textarea rows="1" cols="20" ></textarea></div>
-            <div><label>Your account number </label><textarea rows="1" cols="20" ></textarea></div>
-            <div><label>Destination account</label><textarea rows="1" cols="20" ></textarea></div>
+            <div><label>Amount</label><textarea rows="1" cols="20" id="transferAmount"></textarea></div>
+            <div><label>Origin account number </label><textarea rows="1" cols="20" id="transferAccountNumber"></textarea></div>
+            <div><label>Destination account</label><textarea rows="1" cols="20" id="destinationAccountNumber"></textarea></div>
 
-        </div>
-        <div class="buttonAndInputs">
-            <button type="submit" id="lodge">LODGE</button>
-            <div><label>Amount</label><textarea rows="1" cols="20" ></textarea></div>
-            <div><label>Your account number </label><textarea rows="1" cols="20" ></textarea></div>
-            <div><label>Credit card to be credited</label><textarea rows="1" cols="20" ></textarea></div>
         </div>
     </div>
 

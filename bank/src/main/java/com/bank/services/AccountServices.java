@@ -18,6 +18,11 @@ public class AccountServices {
     
     //get data from 'database'
     private ArrayList<Customer> customers = Database.getCustomers();
+    private ArrayList<Account> accounts = Database.getAccounts();
+    
+    public ArrayList<Account> getAccountsAllUsers(){
+        return accounts;
+    }
     
     //get a single account
     public Account getAccount(ArrayList<Account> al, int accountNumber){
@@ -55,14 +60,14 @@ public class AccountServices {
         }
         return "Account not found";
     }
-    
-    
     //create account for given customer
     public Account createAccount(int id, String type){
         //get customer
         Customer c = customers.get(id - 1);
         //create account ( method returns String response with a/c type and number)
-        return c.createAccount(type);
+        Account a = c.createAccount(type);
+        accounts.add(a);
+        return a;
     }
     
     //delete account by account number
