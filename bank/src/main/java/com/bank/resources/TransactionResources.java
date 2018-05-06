@@ -17,7 +17,12 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;  
+import javax.ws.rs.core.MediaType;
+
+/**
+ *
+ * @author witold
+ */
 
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
@@ -32,8 +37,8 @@ public class TransactionResources {
     @GET
     @Path("/{amount}")
     public Transaction getTransaction(@PathParam("id") int id,
-                                      @PathParam("accountNumber") int accountNumber,
-                                      @PathParam("amount") double amount){
+            @PathParam("accountNumber") int accountNumber,
+            @PathParam("amount") double amount) {
         ArrayList al = as.getAllAccounts(id);
         Account a = as.getAccount(al, accountNumber);
         Transaction t = ts.getTransaction(a, amount);

@@ -12,6 +12,7 @@ let settings = {
   "method": "GET",
   "headers": {
     "Cache-Control": "no-cache",
+    "Postman-Token": "a82ef867-9d3e-4dbb-99ed-9fbbc1f6cc85"
   }
 }
 
@@ -25,6 +26,7 @@ function resetSettings(){
       "method": "GET",
       "headers": {
         "Cache-Control": "no-cache",
+        "Postman-Token": "a82ef867-9d3e-4dbb-99ed-9fbbc1f6cc85"
       }
     }
 }
@@ -173,18 +175,20 @@ function getBalance(){
     uri="http://localhost:49000/banking/customers"
     //get account number
     let accountNumber = $('#accountNumber').val()
-    
     //check if empty
     if(accountNumber == ""){alert('enter ac number'); return}
     //construct url to be passed in
-    //let url = uri + "/" + currentUser.id + "/accounts/"+ accountNumber +"/balance"
-    let url = uri + "/" + currentUser.id + "/accounts"
+    let url = uri + "/" + currentUser.id + "/accounts/"+ accountNumber +"/balance"
     //api call
-    apiCall(url, displayBalance )
+    apiCall(url, cl )
     //reset settings
     resetSettings()
 }
 //extract balance from account and display it
+function showBalance(response){
+    cl(response)
+    $('#balanceDisplay').html(response)
+}
 function displayBalance(response){
     let bal
     response.map( obj=>{

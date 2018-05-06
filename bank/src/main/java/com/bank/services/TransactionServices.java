@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author eldrad
+ * @author witold
  */
 public class TransactionServices {
     
@@ -25,16 +25,15 @@ public class TransactionServices {
         tl.add(t);
         return t;
     }
-
+    
+    //get transaction that maches amount for given account
     public Transaction getTransaction(Account a, double amount) {
         ArrayList<Transaction> tl = a.getTransactions();
         for (Transaction transaction : tl) {
-            if(transaction.getAmount() == amount){
+            if (transaction.getAmount() == amount) {
                 return transaction;
             }
         }
         return null;
     }
-    
-    
 }

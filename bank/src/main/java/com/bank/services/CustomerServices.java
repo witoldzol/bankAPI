@@ -10,8 +10,10 @@ import com.bank.models.Account;
 import com.bank.models.Customer;
 import java.util.ArrayList;
 
-
-
+/**
+ *
+ * @author witold
+ */
 public class CustomerServices {
     
     // initialize list to hold our customers

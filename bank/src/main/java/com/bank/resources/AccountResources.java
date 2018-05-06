@@ -20,9 +20,14 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-
+/**
+ *
+ * @author witold
+ */
 // this is a sub resource, 
 // path param is already defined in parent file
+//@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+//@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class AccountResources {
@@ -63,7 +68,7 @@ public class AccountResources {
         ArrayList<Account> al = null;
         try {
             al = as.getAllAccounts(id);
-            as.getAccount(al, accountNumber);
+            return as.getAccount(al, accountNumber);
             
         } catch (Exception e) {
             System.err.println("error: " + e);
@@ -87,8 +92,9 @@ public class AccountResources {
     //delete account by account number 
     @DELETE
     public String deleteAccount(@PathParam("id") int id, Account a) {
-       as.deleteAccount(id, a); 
-       return "Account number" + a.getNumber() + " deleted";
+        int num = a.getNumber();
+        as.deleteAccount(id, a); 
+       return "Account number" + num + " deleted";
     }
    
     
